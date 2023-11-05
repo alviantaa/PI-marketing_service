@@ -9,14 +9,12 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('business_categories', function (Blueprint $table) {
-            $table->id('id_business_category', 5);
+        Schema::create('product_location', function (Blueprint $table) {
+            $table->id('id_product_location');
             $table->foreignId('id_product')->references('id_product')->on('product');
-            $table->string('category', 20);
-            $table->float('max_capacity');
-            $table->string('description', 255);
+            $table->foreignId('id_warehouse')->references('id_warehouse')->on('warehouse');
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('business_category');
+        Schema::dropIfExists('product_location');
     }
 };

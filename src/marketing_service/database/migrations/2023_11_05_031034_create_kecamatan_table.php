@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('region', function (Blueprint $table) {
-            $table->string('id_region', 5)->primary();
-            $table->string('name_region', 50);
-            $table->string('loc_region', 50);
-            $table->string('lead_region', 100);
+        Schema::create('kecamatan', function (Blueprint $table) {
+            $table->id('id_kecamatan', 7);
+            $table->string('name_kecamatan', 100);
+            $table->foreignId('id_kota')->references('id_kota')->on('kota');
+            $table->foreignId('lead_kecamatan', 100)->reference('id_employee')->on('employee');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('region');
+        Schema::dropIfExists('kecamatan');
     }
 };

@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('branch', function (Blueprint $table) {
-            $table->string('id_branch', 9)->primary();
-            $table->string('id_region', 5);
-            $table->foreign('id_region')->references('id_region')->on('region');
-            $table->string('name_branch', 100);
-            $table->string('lead_branch', 100);
+        Schema::create('region', function (Blueprint $table) {
+            $table->id('id_region', 5);
+            $table->string('name_region', 50);
+            $table->string('loc_region', 50);
+            $table->foreignId('lead_region', 100)->reference('id_employee')->on('employee');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('branch');
+        Schema::dropIfExists('region');
     }
 };

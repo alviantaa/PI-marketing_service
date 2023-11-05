@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customers', function (Blueprint $table) {
-            $table->string('id_customer', 10)->primary();
+        Schema::create('customer', function (Blueprint $table) {
+            $table->id('id_customer', 10);
             $table->string('name', 100);
             $table->string('email_cust', 100)->unique();
             $table->string('no_telp', 13);
             $table->char('sex', 1);
             $table->string('precise_location', 250);
-            $table->string('id_kelurahan', 8)->default('KEL00001');
-            $table->foreign('id_kelurahan')->references('id_kelurahan')->on('kelurahan');
+            $table->foreignId('id_kelurahan')->references('id_kelurahan')->on('kelurahan');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('customer');
     }
 };

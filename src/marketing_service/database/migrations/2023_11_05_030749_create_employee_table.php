@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kota', function (Blueprint $table) {
-            $table->string('id_kota', 6)->primary();
-            $table->string('name_kota', 100);
-            $table->string('id_provinsi', 5);
-            $table->foreign('id_provinsi')->references('id_provinsi')->on('provinsi');
-            $table->string('lead_kota', 100);
+        Schema::create('employee', function (Blueprint $table) {
+            $table->id('id_employee', 6);
             $table->timestamps();
         });
     }
@@ -26,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kota');
+        Schema::dropIfExists('employee');
     }
 };

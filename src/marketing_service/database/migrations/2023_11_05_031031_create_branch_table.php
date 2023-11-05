@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('provinsi', function (Blueprint $table) {
-            $table->string('id_provinsi', 5)->primary();
-            $table->string('name_provinsi', 100);
-            $table->string('id_branch', 9);
-            $table->foreign('id_branch')->references('id_branch')->on('branch');
-            $table->string('lead_provinsi', 100);
+        Schema::create('branch', function (Blueprint $table) {
+            $table->id('id_branch', 9);
+            $table->string('name_branch', 100);
+            $table->foreignId('id_region')->references('id_region')->on('region');
+            $table->foreignId('lead_branch', 100)->reference('id_employee')->on('employee');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('provinsi');
+        Schema::dropIfExists('branch');
     }
 };
