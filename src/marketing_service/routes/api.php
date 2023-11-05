@@ -20,4 +20,7 @@ use App\Http\Controllers\MarketingController;
 // });
 Route::group(['prefix' => 'marketing'], function ($router) {
     Route::get('/test', [MarketingController::class, 'index']);
+    Route::post('/customers', [MarketingController::class, 'storeCustomer']);
+    Route::post('/business-categories', [MarketingController::class, 'storeBusinessCategory']);
+    Route::get('/customers', [MarketingController::class, 'readCustomer']);
 });
