@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MarketingController;
+use App\Http\Controllers\ProductWarehouseAssetController;
+use App\Http\Controllers\CustomerBusinessCategoryController;
+use App\Http\Controllers\OrderReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +21,29 @@ use App\Http\Controllers\MarketingController;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+
+
+//kurang method" GET
 Route::group(['prefix' => 'marketing'], function ($router) {
+    //TEST ROUTE localhost/api/marketing/[endpoint]
     Route::get('/test', [MarketingController::class, 'index']);
-    Route::post('/customers', [MarketingController::class, 'storeCustomer']);
-    Route::post('/business-categories', [MarketingController::class, 'storeBusinessCategory']);
-    Route::get('/customers', [MarketingController::class, 'readCustomer']);
+
+    //PRODUK, WAREHOUSE, and ASSETs
+    Route::post('/add-product', [ProductWarehouseAssetController::class, 'p']);
+    Route::post('/add-warehouse', [ProductWarehouseAssetController::class, 'p']);
+    Route::post('/add-product-location', [ProductWarehouseAssetController::class, 'p']);
+    Route::post('/add-asset', [ProductWarehouseAssetController::class, 'p']);
+    
+
+    //CUSTOMER and BUSINESS CATEGORY
+    Route::post('/add-customer', [CustomerBusinessCategoryController::class, 'storeCustomer']);
+    Route::get('/get-customer', [CustomerBusinessCategoryController::class, 'readCustomer']);
+    Route::post('/add-business-category', [CustomerBusinessCategoryController::class, 'storeBusinessCategory']);
+
+    //ORDER and REPORT
+    Route::post('/add-consumption-report', [OrderReportController::class, 'p']);
+    Route::post('/auto-order-customer', [OrderReportController::class, 'p']);
+    Route::post('/customer-order', [OrderReportController::class, 'p']);
+    Route::post('/marketing-order', [OrderReportController::class, 'p']);
+    
 });
