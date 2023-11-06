@@ -12,12 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('asset', function (Blueprint $table) {
-            $table->id('id_asset', 6);
-            $table->foreignId('id_warehouse')->references('id_warehouse')->on('warehouse');
-            $table->foreignId('PIC')->references('id_employee')->on('employee');
+            $table->string('id_asset', 6)->primary();
+            $table->string('id_warehouse', 6);
+            $table->string('PIC', 10);
             $table->string('asset_name', 100);
             $table->string('asset_type', 100);
             $table->string('spesification');
+            $table->foreign('id_warehouse')->references('id_warehouse')->on('warehouse');
+            $table->foreign('PIC')->references('id_employee')->on('employee');
             $table->timestamps();
         });
     }

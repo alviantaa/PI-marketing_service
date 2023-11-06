@@ -12,11 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('order', function (Blueprint $table) {
-            $table->id('id_order', 10);
-            $table->foreignId('PIC')->references('id_employee')->on('employee');
-            $table->foreignId('id_customer')->references('id_customer')->on('customer');
-            $table->foreignId('id_asset')->references('id_asset')->on('asset');
-            $table->foreignId('id_product_location')->references('id_product_location')->on('product_location');
+            $table->string('id_order', 10)->primary();
+            $table->string('PIC', 10);
+            $table->string('id_customer', 10);
+            $table->string('id_asset', 6);
+            $table->string('id_product_location', 6);
+            $table->foreign('PIC')->references('id_employee')->on('employee');
+            $table->foreign('id_customer')->references('id_customer')->on('customer');
+            $table->foreign('id_asset')->references('id_asset')->on('asset');
+            $table->foreign('id_product_location')->references('id_product_location')->on('product_location');
             $table->float('quantity', 100);
             $table->string('status', 10);
             $table->timestamps();

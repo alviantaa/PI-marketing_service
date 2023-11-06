@@ -12,9 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('product_location', function (Blueprint $table) {
-            $table->id('id_product_location');
-            $table->foreignId('id_product')->references('id_product')->on('product');
-            $table->foreignId('id_warehouse')->references('id_warehouse')->on('warehouse');
+            $table->string('id_product_location', 6)->primary();
+            $table->string('id_product', 10);
+            $table->string('id_warehouse', 6);
+            $table->foreign('id_product')->references('id_product')->on('product');
+            $table->foreign('id_warehouse')->references('id_warehouse')->on('warehouse');
             $table->timestamps();
         });
     }

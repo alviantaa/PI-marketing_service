@@ -12,8 +12,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('business_categories', function (Blueprint $table) {
-            $table->id('id_business_category', 5);
-            $table->foreignId('id_product')->references('id_product')->on('product');
+            $table->string('id_business_category', 6)->primary();
+            $table->string('id_product', 10);
+            $table->foreign('id_product')->references('id_product')->on('product');
             $table->string('category', 20);
             $table->float('max_capacity');
             $table->string('description', 255);

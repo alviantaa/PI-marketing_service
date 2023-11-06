@@ -12,9 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('warehouse', function (Blueprint $table) {
-            $table->id('id_warehouse', 6);
+            $table->string('id_warehouse', 6)->primary();
+            $table->string('PIC', 10);
             $table->foreignId('id_level')->references('id_level')->on('level');
-            $table->foreignId('PIC')->references('id_employee')->on('employee');
+            $table->foreign('PIC')->references('id_employee')->on('employee');
             $table->string('name', 100);
             $table->float('capacity');
             $table->string('address', 200);
