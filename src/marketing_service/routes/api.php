@@ -29,8 +29,8 @@ Route::group(['prefix' => 'marketing'], function ($router) {
     Route::get('/test', [MarketingController::class, 'index']);
 
     //PRODUK, WAREHOUSE, and ASSETs
-    Route::post('/add-product', [ProductWarehouseAssetController::class, 'p']);
-    Route::post('/add-warehouse', [ProductWarehouseAssetController::class, 'p']);
+    Route::post('/add-product', [ProductWarehouseAssetController::class, 'addProduct']);
+    Route::post('/add-warehouse', [ProductWarehouseAssetController::class, 'addWarehouse']);
     Route::post('/add-product-location', [ProductWarehouseAssetController::class, 'p']);
     Route::post('/add-asset', [ProductWarehouseAssetController::class, 'p']);
     
