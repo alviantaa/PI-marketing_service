@@ -41,8 +41,8 @@ Route::group(['prefix' => 'marketing'], function ($router) {
     Route::post('/add-business-category', [CustomerBusinessCategoryController::class, 'storeBusinessCategory']);
 
     //ORDER and REPORT
-    Route::post('/add-consumption-report', [OrderReportController::class, 'p']);
-    Route::post('/auto-order-customer', [OrderReportController::class, 'p']);
+    Route::post('/add-consumption-report', [OrderReportController::class, 'storeConsumptionReport']);
+    Route::post('/auto-order-customer', [OrderReportController::class, 'storeAutoOrder']);
     Route::post('/customer-order', [OrderReportController::class, 'p']);
     Route::post('/marketing-order', [OrderReportController::class, 'p']);
     
