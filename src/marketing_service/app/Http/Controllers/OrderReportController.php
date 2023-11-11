@@ -12,7 +12,7 @@ class OrderReportController extends Controller
     public function storeConsumptionReport(Request $request) 
     {
     $validator = Validator::make($request->all(), [
-            'id_report' => 'required|string|max:10|unique:consumption_report',
+            'id_report' => 'required|string|max:10|unique:report',
             'id_order' => 'required|string|max:10|exists:order,id_order',
             'consumption' => 'required|numeric',
             'remaining_product' => 'required|numeric',
