@@ -31,9 +31,8 @@ Route::group(['prefix' => 'marketing'], function ($router) {
     //PRODUK, WAREHOUSE, and ASSETs
     Route::post('/add-product', [ProductWarehouseAssetController::class, 'addProduct']);
     Route::post('/add-warehouse', [ProductWarehouseAssetController::class, 'addWarehouse']);
-    Route::post('/add-product-location', [ProductWarehouseAssetController::class, 'p']);
-    Route::post('/add-asset', [ProductWarehouseAssetController::class, 'p']);
-    
+    Route::post('/add-product-location', [ProductWarehouseAssetController::class, 'storeProductLocation']);
+    Route::post('/add-asset', [ProductWarehouseAssetController::class, 'storeAsset']);
 
     //CUSTOMER and BUSINESS CATEGORY
     Route::post('/add-customer', [CustomerBusinessCategoryController::class, 'storeCustomer']);
