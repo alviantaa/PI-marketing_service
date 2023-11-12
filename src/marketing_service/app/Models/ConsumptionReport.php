@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ConsumptionReport extends Model
 {
+    protected $table = 'report';
     protected $primaryKey = 'id_report';
     protected $fillable = [
         'id_report','id_order', 'id_customer', 'consumption', 'remaining_product'
