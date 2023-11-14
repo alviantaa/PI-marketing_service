@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreign('id_asset')->references('id_asset')->on('asset');
             $table->foreign('id_product_location')->references('id_product_location')->on('product_location');
             $table->float('quantity', 100);
-            $table->string('status', 10);
+            $table->enum('status', ['onRequest', 'onProcess', 'Success', 'Pending', 'Cancelled']);
             $table->timestamps();
         });
     }

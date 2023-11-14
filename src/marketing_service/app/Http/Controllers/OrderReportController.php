@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AutoOrder;
 use App\Models\ConsumptionReport;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -47,6 +47,28 @@ class OrderReportController extends Controller
         $autoOrder = AutoOrder::create($request->all());
 
         return response()->json($autoOrder, 201);
+
+    }
+
+    public function addMarketingOrder(Request $request) 
+    {
+        $validator = Validator::make($request->all(), [
+            'id_order' => 'required|string|max:10',
+            'PIC' => 'required|string|max:10|exists:employee,id_employee',
+            'id_customer' => 'required|string|max:10|exists:customer,id_customer',
+            'id_asset' => 'required|string|max:6|exists:asset,id_asset',
+            'id_product_location' => 'required|string|max:10|exists:product_location,id_product_location',
+            'quantity' => 'required|numeric',
+            'status' => 'required|string|max:10',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+
+        $marketingOrder = Order::create($request->all());
+
+        return response()->json($marketingOrder, 201);
 
     }
 }
