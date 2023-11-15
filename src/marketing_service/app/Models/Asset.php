@@ -9,7 +9,7 @@ class Asset extends Model
 {
     protected $table = 'asset';
     protected $primaryKey = 'id_asset'; // Atur primary key model
-    protected $fillable = ['id_asset', 'asset_name', 'asset_type', 'Spesifications', 'id_employee', 'id_warehouse'];
+    protected $fillable = ['id_asset', 'asset_name', 'asset_type', 'spesification', 'PIC','id_warehouse'];
 
     protected $casts = [
         'created_at' => 'datetime:Y-m-d H:i:s',
@@ -21,8 +21,8 @@ class Asset extends Model
         return $this->belongsTo(Warehouse::class, 'id_warehouse', 'id_warehouse');
     }
  
-public function id_employee()
+    public function employee()
     {
-        return $this->belongsTo(id_employee::class, 'id_id_employee', 'id_id_employee');
+        return $this->belongsTo(Employee::class, 'PIC', 'id_employee');
     }
 }
