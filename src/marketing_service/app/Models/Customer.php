@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
+    protected $table = 'customer';
     protected $primaryKey = 'id_customer'; // Atur primary key model
     protected $fillable = ['id_customer', 'name', 'email_cust', 'no_telp', 'sex', 'precise_location', 'id_kelurahan', 'created_at', 'updated_at'];
 
