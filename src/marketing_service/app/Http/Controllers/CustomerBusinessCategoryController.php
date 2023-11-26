@@ -55,4 +55,13 @@ class CustomerBusinessCategoryController extends Controller
 
         return response()->json($businessCategory, 201);
     }
+
+    public function readBusinessCategory()
+    {
+        $businessCategories = BusinessCategory::select('business_categories.*', 'product.product_name')
+            ->join('product', 'business_categories.id_product', '=', 'product.id_product')
+            ->get();
+
+        return response()->json($businessCategories, 200);
+    }
 }
