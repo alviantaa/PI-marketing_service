@@ -8,6 +8,8 @@ use App\Models\Warehouse;
 use App\Models\Asset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+
 
 
 class ProductWarehouseAssetController extends Controller
@@ -86,4 +88,62 @@ public function storeAsset(Request $request)
         return response()->json($asset, 201);
     }
 
+    public function readProduct()
+    {
+    $products = Product::all();
+
+    return response()->json($products, 200);
+    }
+
+public function readWarehouse()
+{
+    $warehouses = Warehouse::join('level', 'warehouse.id_level', '=', 'level.id_level')
+        ->select(
+            'warehouse.id_warehouse',
+            'warehouse.id_level',
+            'level.level',
+            'warehouse.PIC',
+            'warehouse.name',
+            'warehouse.capacity',
+            'warehouse.address'
+        )
+        ->get();
+
+    return response()->json($warehouses, 200);
+}
+
+public function readProductLocation()
+{
+    $productLocations = DB::table('product_location')
+        ->join('product', 'product_location.id_product', '=', 'product.id_product')
+        ->join('warehouse', 'product_location.id_warehouse', '=', 'warehouse.id_warehouse')
+        ->select(
+            'product_location.id_product_location',
+            'product_location.id_product',
+            'product.product_name',
+            'product_location.id_warehouse',
+            'warehouse.name as warehouse_name'
+        )
+        ->get();
+
+    return response()->json($productLocations, 200);
+}
+
+public function readAsset(Request $request)
+{
+    $assets = DB::table('asset')
+        ->join('warehouse', 'asset.id_warehouse', '=', 'warehouse.id_warehouse')
+        ->select(
+            'asset.id_asset',
+            'asset.asset_name',
+            'asset.asset_type',
+            'asset.spesification',
+            'asset.PIC',
+            'warehouse.id_warehouse',
+            'warehouse.name as warehouse_name'
+        )
+        ->get();
+
+    return response()->json($assets, 200);
+}
 }
