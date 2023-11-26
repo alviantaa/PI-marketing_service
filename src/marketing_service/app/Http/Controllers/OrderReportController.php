@@ -71,4 +71,24 @@ class OrderReportController extends Controller
         return response()->json($marketingOrder, 201);
 
     }
+    public function readConsumptionReport()
+    {
+    $products = ConsumptionReport::all();
+
+    return response()->json($products, 200);
+    }
+
+    public function readAutoOrder()
+    {
+    $products = AutoOrder::all();
+
+    return response()->json($products, 200);
+    }
+
+    public function readMarketingOrder()
+    {
+    $products = Order::all();
+
+    return response()->json($products, 200);
+    }
 }
